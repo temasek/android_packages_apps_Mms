@@ -111,6 +111,12 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     // Blacklist
     public static final String BLACKLIST                 = "pref_blacklist";
 
+    // Text Area
+    private static final String PREF_TEXT_AREA_SIZE      = "pref_text_area_size";
+    public static final String TEXT_AREA_SIZE            = "text_area_size";
+    private static final int TEXT_AREA_LIMIT_MIN         = 2;
+    private static final int TEXT_AREA_LIMIT_MAX         = 15;
+
     // Menu entries
     private static final int MENU_RESTORE_DEFAULTS    = 1;
 
@@ -168,6 +174,8 @@ public class MessagingPreferenceActivity extends PreferenceActivity
 
     // Blacklist
     private PreferenceScreen mBlacklist;
+
+    private Preference mTextAreaSize;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -255,6 +263,8 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         mGestureSensitivity = (ListPreference) findPreference(GESTURE_SENSITIVITY);
         mUnicodeStripping = (ListPreference) findPreference(UNICODE_STRIPPING);
         mUnicodeStrippingEntries = getResources().getTextArray(R.array.pref_unicode_stripping_entries);
+
+        mTextAreaSize = findPreference(PREF_TEXT_AREA_SIZE);
 
         // QuickMessage
         mEnableQuickMessagePref = (CheckBoxPreference) findPreference(QUICKMESSAGE_ENABLED);
@@ -349,6 +359,9 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         setEnabledQmLockscreenPref();
         setEnabledQmCloseAllPref();
         setEnabledQmDarkThemePref();
+
+        // Text Area
+        setTextAreaSummary();
 
         // If needed, migrate vibration setting from the previous tri-state setting stored in
         // NOTIFICATION_VIBRATE_WHEN to the boolean setting stored in NOTIFICATION_VIBRATE.
@@ -477,6 +490,24 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         mEnableQmDarkThemePref.setChecked(getQmDarkThemeEnabled(this));
     }
 
+    private void setTextAreaSize(Context context, int value) {
+        SharedPreferences.Editor editPrefs =
+            PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editPrefs.putInt(TEXT_AREA_SIZE, value);
+        editPrefs.apply();
+    }
+
+    private int getTextAreaSize(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getInt(TEXT_AREA_SIZE, 3);
+    }
+
+    private void setTextAreaSummary() {
+        mTextAreaSize.setSummary(
+                getString(R.string.pref_text_area_size_summary,
+                        getTextAreaSize(this)));
+    }
+
     private void setSmsDisplayLimit() {
         mSmsLimitPref.setSummary(
                 getString(R.string.pref_summary_delete_limit,
@@ -554,6 +585,14 @@ public class MessagingPreferenceActivity extends PreferenceActivity
             // Update "enable dark theme" checkbox state
             mEnableQmDarkThemePref.setEnabled(!mEnablePrivacyModePref.isChecked());
 
+        } else if (preference == mTextAreaSize) {
+            new NumberPickerDialog(this,
+                    mTextAreaSizeListener,
+                    getTextAreaSize(this),
+                    TEXT_AREA_LIMIT_MIN,
+                    TEXT_AREA_LIMIT_MAX,
+                    R.string.pref_text_area_size_title).show();
+
         } else if (preference == mEnableQuickMessagePref) {
             // Update the actual "enable quickmessage" value that is stored in secure settings.
             enableQuickMessage(mEnableQuickMessagePref.isChecked(), this);
@@ -600,6 +639,14 @@ public class MessagingPreferenceActivity extends PreferenceActivity
             public void onNumberSet(int limit) {
                 mMmsRecycler.setMessageLimit(MessagingPreferenceActivity.this, limit);
                 setMmsDisplayLimit();
+            }
+    };
+
+    NumberPickerDialog.OnNumberSetListener mTextAreaSizeListener =
+        new NumberPickerDialog.OnNumberSetListener() {
+            public void onNumberSet(int value) {
+                setTextAreaSize(MessagingPreferenceActivity.this, value);
+                setTextAreaSummary();
             }
     };
 
