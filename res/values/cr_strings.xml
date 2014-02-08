@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Preferences -->
+    <string name="pref_title_mms_enter_new_line">Force newline</string>
+    <string name="pref_summary_mms_enter_new_line">Pressing the enter key will add a newline</string>
+
+</resources>
