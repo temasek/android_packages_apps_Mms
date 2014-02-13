@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Preferences -->
+    <string name="pref_title_mms_enter_new_line">Добавить новую строку</string>
+    <string name="pref_summary_mms_enter_new_line">Нажатие клавиши \"ввод\" добавит новую строку</string>
+
+    <!-- Text area -->
+    <string name="pref_text_area_size_title">Размер текстовой области</string>
+    <string name="pref_text_area_size_summary">Установить размер текстовой области для <xliff:g id="lines">%1$s</xliff:g> строк</string>
+
+</resources>
