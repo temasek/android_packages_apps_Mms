@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Preferences -->
+    <string name="pref_title_mms_enter_new_line">Zeilenumbruch</string>
+    <string name="pref_summary_mms_enter_new_line">Die Enter-Taste fügt einen Zeilenumbruch ein.</string>
+
+    <!-- Text area -->
+    <string name="pref_text_area_size_title">Textfeldgröße</string>
+    <string name="pref_text_area_size_summary">Setzt die Textfeldgröße auf <xliff:g id="lines">%1$s</xliff:g> Zeilen.</string>
+
+</resources>
