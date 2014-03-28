@@ -3,7 +3,7 @@
 
     <!-- Preferences -->
     <string name="pref_title_mms_enter_new_line">Zeilenumbruch</string>
-    <string name="pref_summary_mms_enter_new_line">Die Enter-Taste fügt einen Zeilenumbruch ein.</string>
+    <string name="pref_summary_mms_enter_new_line">Die Enter-Taste bewirkt einen Zeilenumbruch.</string>
 
     <!-- Text area -->
     <string name="pref_text_area_size_title">Textfeldgröße</string>
