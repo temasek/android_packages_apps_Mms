@@ -9,4 +9,8 @@
     <string name="pref_text_area_size_title">Text area size</string>
     <string name="pref_text_area_size_summary">Set text area to <xliff:g id="lines">%1$s</xliff:g> lines</string>
 
+    <!-- Heads up mode -->
+    <string name="pref_title_notification_heads_up_mode_enabled">Heads up mode</string>
+    <string name="pref_summary_notification_heads_up_mode_enabled">Show messages as heads up notification.</string>
+
 </resources>
