@@ -195,4 +195,9 @@
 
     <!-- Failed to open associated activity -->
     <string name="failed_open_associated_activity_msg">Failed to open associated activity</string>
+
+    <!-- Settings item for boolean option to auto -enable data for MMS messages -->
+    <string name="pref_title_mms_auto_enable_data">Auto-enable data</string>
+    <!-- Settings item description for boolean auto-enable data for MMS option -->
+    <string name="pref_summary_mms_auto_enable_data">Automatically enable mobile data for MMS messages</string>
 </resources>
